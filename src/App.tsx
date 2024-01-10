@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import { Header } from './components/Header';
+import { Layout } from './components/Layout';
 
 function App() {
   return (
-    <div>
-      <Header />
-    </div>
+    <Layout>
+      <div>main content</div>
+    </Layout>
   );
 }
 

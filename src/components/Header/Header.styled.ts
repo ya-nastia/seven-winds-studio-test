@@ -4,7 +4,7 @@ export const Header = styled.header`
   display: flex;
   flex-direction: column;
 
-  width: 100%;
+  grid-column: 1 / 3;
 
   background: #27272A;
 `;
@@ -39,6 +39,8 @@ export const MenuItem = styled.div<{ isActive?: boolean }>`
 export const HeaderTabs = styled.div`
   display: grid;
   grid-template-columns: 234px 314px auto;
+
+  height: 44px;
   
   border-top: 1px solid #414144;
   border-bottom: 1px solid #414144;
