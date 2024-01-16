@@ -10,9 +10,15 @@ interface ITableRows {
   row: IRow;
   handleCreateOrUpdate: (event: React.KeyboardEvent<HTMLInputElement>, type: string, data?: any) => void;
   deleteString: (id: number) => void;
+  level?: number;
 }
 
-const TableRows: React.FC<ITableRows> = ({ row, handleCreateOrUpdate, deleteString }) => {
+const TableRows: React.FC<ITableRows> = ({ 
+  row, 
+  handleCreateOrUpdate, 
+  deleteString, 
+  level = 0,
+}) => {
   const [mode, setMode] = useState<Mode>(Mode.Default);
 
   const {
@@ -98,15 +104,15 @@ const TableRows: React.FC<ITableRows> = ({ row, handleCreateOrUpdate, deleteStri
     <>
       {
         mode !== Mode.Edit && (
-          <S.TableRow onDoubleClick={handleDoubleClick}>
+          <S.TableRow onDoubleClick={handleDoubleClick} firstRow={100 + level * 20}>
             <S.ButtonCell>
               <ManageStringButton onCreateClick={createNewRow} onDeleteClick={() => row.id && deleteString(row.id)} />
             </S.ButtonCell>
-            <S.RowCell>{row.rowName}</S.RowCell>
-            <S.RowCell>{row.salary}</S.RowCell>
-            <S.RowCell>{row.equipmentCosts}</S.RowCell>
-            <S.RowCell>{row.overheads}</S.RowCell>
-            <S.RowCell>{row.estimatedProfit}</S.RowCell>
+            <S.RowCell title={row.rowName || ''}>{row.rowName}</S.RowCell>
+            <S.RowCell title={`${row.salary}`}>{row.salary}</S.RowCell>
+            <S.RowCell title={`${row.equipmentCosts}`}>{row.equipmentCosts}</S.RowCell>
+            <S.RowCell title={`${row.overheads}`}>{row.overheads}</S.RowCell>
+            <S.RowCell title={`${row.estimatedProfit}`}>{row.estimatedProfit}</S.RowCell>
           </S.TableRow>
         )
       }
@@ -124,40 +130,39 @@ const TableRows: React.FC<ITableRows> = ({ row, handleCreateOrUpdate, deleteStri
             handleOverheadsValueChange={handleOverheadsValueChange}
             handleEstimatedProfitChange={handleEstimatedProfitChange}
             localCreateString={localCreateString} 
+            level={level}
           />
         )
       }
       {
         row.child && row.child.map((child: IRow) => {
           return (
-            <div style={{ marginLeft: `20px` }}>
-              <TableRows 
-                row={child} 
-                handleCreateOrUpdate={handleCreateOrUpdate} 
-                deleteString={deleteString}
-                key={row.id}
-              />
-            </div>
+            <TableRows 
+              row={child} 
+              handleCreateOrUpdate={handleCreateOrUpdate} 
+              deleteString={deleteString}
+              key={row.id}
+              level={level + 1}
+            />
           )
         })
       }
       {
         mode === Mode.Create && (
-          <div style={{ marginLeft: `20px` }}>
-            <InputsRow 
-              rowNameValue={rowNameValue}
-              salaryValue={salaryValue}
-              equipmentCostsValue={equipmentCostsValue}
-              overheadsValue={overheadsValue}
-              estimatedProfitValue={estimatedProfitValue}
-              handleRowNameChange={handleRowNameChange}
-              handleSalaryChange={handleSalaryChange}
-              handleEquipmentCostsChange={handleEquipmentCostsChange}
-              handleOverheadsValueChange={handleOverheadsValueChange}
-              handleEstimatedProfitChange={handleEstimatedProfitChange}
-              localCreateString={localCreateString} 
-            />
-          </div>
+          <InputsRow 
+            rowNameValue={rowNameValue}
+            salaryValue={salaryValue}
+            equipmentCostsValue={equipmentCostsValue}
+            overheadsValue={overheadsValue}
+            estimatedProfitValue={estimatedProfitValue}
+            handleRowNameChange={handleRowNameChange}
+            handleSalaryChange={handleSalaryChange}
+            handleEquipmentCostsChange={handleEquipmentCostsChange}
+            handleOverheadsValueChange={handleOverheadsValueChange}
+            handleEstimatedProfitChange={handleEstimatedProfitChange}
+            localCreateString={localCreateString} 
+            level={level + 1}
+          />
         )
       }
     </>

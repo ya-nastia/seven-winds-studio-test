@@ -3,17 +3,18 @@ import * as S from '../Content/Content.styled';
 import { ReactComponent as PaperIcon } from '../../assets/icons/paper-icon.svg';
 
 interface IInputsRowProps {
-  rowNameValue: string | null,
-  salaryValue: number,
-  equipmentCostsValue: number,
-  overheadsValue: number,
-  estimatedProfitValue: number,
-  handleRowNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  handleSalaryChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  handleEquipmentCostsChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  handleOverheadsValueChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  handleEstimatedProfitChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  localCreateString: (e: React.KeyboardEvent<HTMLInputElement>) => void
+  rowNameValue: string | null;
+  salaryValue: number;
+  equipmentCostsValue: number;
+  overheadsValue: number;
+  estimatedProfitValue: number;
+  handleRowNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSalaryChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleEquipmentCostsChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleOverheadsValueChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleEstimatedProfitChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  localCreateString: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  level: number;
 }
 
 const InputsRow: React.FC<IInputsRowProps> = ({
@@ -28,9 +29,10 @@ const InputsRow: React.FC<IInputsRowProps> = ({
   handleEquipmentCostsChange,
   handleOverheadsValueChange,
   handleEstimatedProfitChange,
+  level,
 }) => {
   return (
-    <S.TableRow>
+    <S.TableRow firstRow={100 + level * 20}>
       <S.ButtonCell>
         <PaperIcon />
       </S.ButtonCell>

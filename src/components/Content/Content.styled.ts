@@ -6,7 +6,7 @@ export const Table = styled.div`
 
 export const TableHeader = styled.div`
   display: grid;
-  grid-template-columns: 1fr 5fr repeat(4, 2fr);
+  grid-template-columns: 100px 5fr repeat(4, 150px);
 `;
 
 export const HeaderCell = styled.div`
@@ -22,9 +22,9 @@ export const HeaderCell = styled.div`
   letter-spacing: 0.1px;
 `;
 
-export const TableRow = styled.div`
+export const TableRow = styled.div<{ firstRow?: number }>`
   display: grid;
-  grid-template-columns: 1fr 5fr repeat(4, 2fr);
+  grid-template-columns: ${({firstRow}) => firstRow}px 5fr repeat(4, 150px);
 
   border-top: 1px solid #414144;
 `;
@@ -41,6 +41,8 @@ export const RowCell = styled.div`
   font-weight: 400;
   line-height: 130%;
   letter-spacing: 0.1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const ButtonCell = styled.button`
@@ -48,6 +50,7 @@ export const ButtonCell = styled.button`
   align-items: center;
 
   padding: 21px 12px;
+  margin-left: auto;
 
   border: none;
   background-color: transparent;

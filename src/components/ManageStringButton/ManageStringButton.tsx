@@ -8,7 +8,7 @@ interface IManageStringButtonProps {
   onDeleteClick: () => void;
 }
 
-const ManageStringButton: React.FC<IManageStringButtonProps> = ({onCreateClick, onDeleteClick}) => {
+const ManageStringButton: React.FC<IManageStringButtonProps> = ({ onCreateClick, onDeleteClick }) => {
   return (
     <S.IconsContainer>
       <CreateIcon onClick={onCreateClick} />

@@ -110,7 +110,7 @@ const Content: React.FC = () => {
 
       {
         !data.length ? (
-          <S.TableRow>
+          <S.TableRow firstRow={100}>
             <S.ButtonCell><PaperIcon /></S.ButtonCell>
             <S.RowCell>
               <S.InputCell 
