@@ -20,7 +20,7 @@ export const createOrUpdateLocalData = (
 
     if (changed.length) replaceChangedElements(changed, oldData);
 
-    const parent = stringData.id;
+    const parent = stringData?.id;
 
     if (type === 'create' && parent) {
       const parentEl = findElementWithID(oldData, parent);

@@ -49,7 +49,7 @@ const Content: React.FC = () => {
         materials: 0,
         mimExploitation: 0,
         overheads: stringData?.overheadsValue || overheadsValue,
-        parentId: stringData.id || null,
+        parentId: stringData?.id || null,
         rowName: stringData?.rowNameValue || rowNameValue || null,
         salary: stringData?.salaryValue || salaryValue,
         supportCosts: 0
