@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
 import { Layout } from './components/Layout';
+import { Content } from './components/Content';
 
 function App() {
   return (
     <Layout>
-      <div>main content</div>
+      <Content />
     </Layout>
   );
 }
